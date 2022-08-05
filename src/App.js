@@ -7,6 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>접수했다. 리액트</h1>
+        <p>접수됐나, 리액트?</p>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
