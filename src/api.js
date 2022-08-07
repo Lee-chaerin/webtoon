@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+// 이해가될때 보자.
 function Users() {
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
