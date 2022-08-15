@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { WebtoonAPIList } from './services/webtoon';
 
 const App = () => {
@@ -10,7 +10,6 @@ const App = () => {
       console.log(e);
     }
   }
-
 
   useEffect(() => {
     dateApi();
@@ -60,10 +59,43 @@ const App = () => {
   let week = days.map(function(day, index){
     return <button key={index} onClick={() => AllDay(index)}>{day}</button>;
   });
+
+
+
+
+  const [keyword, searchKeyword] = useState('');
+
+  const search = e => {
+    searchKeyword(e.target.value);
+    console.log(keyword);
+  };
+
+
+
+
+  const searchWebtoon = async(keyword) => {
+    try {
+      const search = await WebtoonAPIList.getSearchWebtoon(keyword);
+      console.log(search);
+      
+      if (search.data.error === "Not Found"){
+        alert("해당하는 웹툰은 없어요.");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
   
   return (
     <div>
-      {week}
+      <div>
+        <input onChange={search}/>
+        <button onClick={() => searchWebtoon(keyword)}>검색</button>
+      </div>
+
+      <div>
+        {week}
+      </div>
     </div>
   );
 }
