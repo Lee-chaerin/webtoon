@@ -1,21 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { WebtoonAPIList } from './services/webtoon';
 
 const App = () => {
-  const [data, setData] = useState(null);
-  const onClick = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllWebtoon();
-      setData(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const AllDay = async(week) => {
     try {
       const day = await WebtoonAPIList.getAllDay(week);
-      setData(day);
       console.log(day);
     } catch (e) {
       console.log(e);
@@ -74,14 +63,7 @@ const App = () => {
   
   return (
     <div>
-      <div>
-        {week}
-      </div>
-
-      <div>
-        <button onClick={onClick}>불러오기</button>
-      </div>
-      {data && <textarea rows={7} cols={20} defaultValue={JSON.stringify(data, null, 2)} />}
+      {week}
     </div>
   );
 }
