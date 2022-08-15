@@ -7,15 +7,9 @@ export const WebtoonAPIList = {
   getKakaoWebtoon: async() => await axiosInstance.get('kakao'),
   getKakaopageWebtoon: async() => await axiosInstance.get('kakao-page'),
 
-  getAllMon: async() => await axiosInstance.get('all/week?day=0'),
-  getAllTue: async() => await axiosInstance.get('all/week?day=1'),
-  getAllWed: async() => await axiosInstance.get('all/week?day=2'),
-  getAllThu: async() => await axiosInstance.get('all/week?day=3'),
-  getAllFri: async() => await axiosInstance.get('all/week?day=4'),
-  getAllSat: async() => await axiosInstance.get('all/week?day=5'),
-  getAllSun: async() => await axiosInstance.get('all/week?day=6'),
+  getAllDay: async(week) => await axiosInstance.get(`all/week?day=${week}`),
 
-  getSearchWebtoon: async() => await axiosInstance.get('search?keyword='),  //검색(뒤에 검색하는법 알아오기)
+  getSearchWebtoon: async(keyword) => await axiosInstance.get(`search?keyword=${keyword}`),  
 
   // 채린 숙제 : 위의 함수 처럼 나머지 api들도 작업해주세요.
 

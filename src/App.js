@@ -15,7 +15,7 @@ const App = () => {
 
   const AllMon = async() => {
     try {
-      const res = await WebtoonAPIList.getAllMon();
+      const res = await WebtoonAPIList.getAllDay(0);
       setData(res);
       console.log(res);
     } catch (e) {
@@ -24,7 +24,7 @@ const App = () => {
   };
   const AllTue = async() => {
     try {
-      const res = await WebtoonAPIList.getAllTue();
+      const res = await WebtoonAPIList.getAllDay(1);
       setData(res);
       console.log(res);
     } catch (e) {
@@ -33,7 +33,7 @@ const App = () => {
   };
   const AllWed = async() => {
     try {
-      const res = await WebtoonAPIList.getAllWed();
+      const res = await WebtoonAPIList.getAllDay(2);
       setData(res);
       console.log(res);
     } catch (e) {
@@ -42,7 +42,7 @@ const App = () => {
   };
   const AllThu = async() => {
     try {
-      const res = await WebtoonAPIList.getAllThu();
+      const res = await WebtoonAPIList.getAllDay(3);
       setData(res);
       console.log(res);
     } catch (e) {
@@ -51,7 +51,7 @@ const App = () => {
   };
   const AllFri = async() => {
     try {
-      const res = await WebtoonAPIList.getAllFri();
+      const res = await WebtoonAPIList.getAllDay(4);
       setData(res);
       console.log(res);
     } catch (e) {
@@ -60,7 +60,7 @@ const App = () => {
   };
   const AllSat = async() => {
     try {
-      const res = await WebtoonAPIList.getAllSat();
+      const res = await WebtoonAPIList.getAllDay(5);
       setData(res);
       console.log(res);
     } catch (e) {
@@ -69,7 +69,7 @@ const App = () => {
   };
   const AllSun = async() => {
     try {
-      const res = await WebtoonAPIList.getAllSun();
+      const res = await WebtoonAPIList.getAllDay(6);
       setData(res);
       console.log(res);
     } catch (e) {
@@ -86,13 +86,13 @@ const App = () => {
 
     console.log(week);
 
-    const Sun = await WebtoonAPIList.getAllSun();
-    const Mon = await WebtoonAPIList.getAllMon();
-    const Tue = await WebtoonAPIList.getAllTue();
-    const Wed = await WebtoonAPIList.getAllWed();
-    const Thu = await WebtoonAPIList.getAllThu();
-    const Fri = await WebtoonAPIList.getAllFri();
-    const Sat = await WebtoonAPIList.getAllSat(); 
+    const Mon = await WebtoonAPIList.getAllDay(0);
+    const Tue = await WebtoonAPIList.getAllDay(1);
+    const Wed = await WebtoonAPIList.getAllDay(2);
+    const Thu = await WebtoonAPIList.getAllDay(3);
+    const Fri = await WebtoonAPIList.getAllDay(4);
+    const Sat = await WebtoonAPIList.getAllDay(5); 
+    const Sun = await WebtoonAPIList.getAllDay(6);
 
     switch(week){
       case 0:
@@ -137,7 +137,7 @@ const App = () => {
       <div>
         <button onClick={onClick}>불러오기</button>
       </div>
-      {data && <textarea rows={7} cols={20} value={JSON.stringify(data, null, 2)} />}
+      {data && <textarea rows={7} cols={20} defaultValue={JSON.stringify(data, null, 2)} />}
     </div>
   );
 }
