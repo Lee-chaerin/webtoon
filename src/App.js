@@ -67,17 +67,15 @@ const App = () => {
     }
   };
 
+  let days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"];
+  let week = days.map(function(day, index){
+    return <button key={index} onClick={() => AllDay(index)}>{day}</button>;
+  });
   
   return (
     <div>
       <div>
-        <button onClick={() => AllDay(0)}>월요일</button>
-        <button onClick={() => AllDay(1)}>화요일</button>
-        <button onClick={() => AllDay(2)}>수요일</button>
-        <button onClick={() => AllDay(3)}>목요일</button>
-        <button onClick={() => AllDay(4)}>금요일</button>
-        <button onClick={() => AllDay(5)}>토요일</button>
-        <button onClick={() => AllDay(6)}>일요일</button>
+        {week}
       </div>
 
       <div>
