@@ -12,70 +12,16 @@ const App = () => {
     }
   };
 
+  const AllDay = async(week) => {
+    try {
+      const day = await WebtoonAPIList.getAllDay(week);
+      setData(day);
+      console.log(day);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
-  const AllMon = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllDay(0);
-      setData(res);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const AllTue = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllDay(1);
-      setData(res);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const AllWed = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllDay(2);
-      setData(res);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const AllThu = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllDay(3);
-      setData(res);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const AllFri = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllDay(4);
-      setData(res);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const AllSat = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllDay(5);
-      setData(res);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const AllSun = async() => {
-    try {
-      const res = await WebtoonAPIList.getAllDay(6);
-      setData(res);
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   useEffect(() => {
     dateApi();
@@ -125,13 +71,13 @@ const App = () => {
   return (
     <div>
       <div>
-        <button onClick={AllMon}>월요일</button>
-        <button onClick={AllTue}>화요일</button>
-        <button onClick={AllWed}>수요일</button>
-        <button onClick={AllThu}>목요일</button>
-        <button onClick={AllFri}>금요일</button>
-        <button onClick={AllSat}>토요일</button>
-        <button onClick={AllSun}>일요일</button>
+        <button onClick={() => AllDay(0)}>월요일</button>
+        <button onClick={() => AllDay(1)}>화요일</button>
+        <button onClick={() => AllDay(2)}>수요일</button>
+        <button onClick={() => AllDay(3)}>목요일</button>
+        <button onClick={() => AllDay(4)}>금요일</button>
+        <button onClick={() => AllDay(5)}>토요일</button>
+        <button onClick={() => AllDay(6)}>일요일</button>
       </div>
 
       <div>
