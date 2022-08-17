@@ -3,6 +3,9 @@ import { axiosInstance } from '../utils/api';
 export const WebtoonAPIList = {
   getAllWebtoon: async() => await axiosInstance.get('all'),
 
+  getWebtoonForm: async(platform) => await axiosInstance.get(`${platform}`),
+
+
   getNaverWebtoon: async() => await axiosInstance.get('naver'),
   getKakaoWebtoon: async() => await axiosInstance.get('kakao'),
   getKakaopageWebtoon: async() => await axiosInstance.get('kakao-page'),
