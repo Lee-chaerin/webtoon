@@ -22,10 +22,10 @@ const App = () => {
   
 
   //검색
-  const [keyword, searchKeyword] = useState('');
+  const [keyword, setKeyword] = useState('');
 
   const search = (e) => {
-    searchKeyword(e.target.value);
+    setKeyword(e.target.value);
     console.log(keyword);
   };
 
@@ -48,26 +48,26 @@ const App = () => {
 
 
 
-
+  //플랫폼 이동
   let forms = ["네이버", "카카오", "카카오페이지"];
   let formList = forms.map(function(form, index){
     return <li key={index}><a href='#!' onClick={() => clickForm(form)}>{form}</a></li>
   });
 
-  const [platform, changeForm] = useState('네이버');
+  const [platform, setPlatform] = useState('네이버');
 
   const clickForm = (e) => {
     switch(e){
       case "네이버":
-        changeForm("네이버");
+        setPlatform("네이버");
         WebtoonForm("naver");
         break;
       case "카카오":
-        changeForm("카카오")
+        setPlatform("카카오")
         WebtoonForm("kakao");
         break;
       case "카카오페이지":
-        changeForm("카카오페이지")
+        setPlatform("카카오페이지")
         WebtoonForm("kakao-page");
         break;
       default:
