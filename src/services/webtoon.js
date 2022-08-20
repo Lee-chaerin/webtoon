@@ -5,11 +5,6 @@ export const WebtoonAPIList = {
 
   getWebtoonForm: async(platform) => await axiosInstance.get(`${platform}`),
 
-
-  getNaverWebtoon: async() => await axiosInstance.get('naver'),
-  getKakaoWebtoon: async() => await axiosInstance.get('kakao'),
-  getKakaopageWebtoon: async() => await axiosInstance.get('kakao-page'),
-
   getAllDay: async(week) => await axiosInstance.get(`all/week?day=${week}`),
 
   getSearchWebtoon: async(keyword) => await axiosInstance.get(`search?keyword=${keyword}`),  
