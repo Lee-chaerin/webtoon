@@ -19,7 +19,6 @@ a {
 
 #header {
   padding: 75px 300px 20px;
-  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,14 +59,13 @@ a {
 /* 메인 */
 
 #main {
-  padding: 0 300px; 
+  padding: 20px 300px; 
 }
 
 
 
 #dropForm {
   float: right;
-  margin-bottom: 40px;
 }
 
 #dropForm li {
@@ -102,7 +100,7 @@ a {
 
 
 #week {
-  text-align: center;
+  margin-top: 80px;
   clear: both;
 }
 
@@ -136,10 +134,13 @@ a {
 
 .webtoon h6 {
   font-size: 13px;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-
-
+.searchToon {
+  padding: 0 18px;
+  display: inline-block;
+}

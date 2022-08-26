@@ -1,15 +1,22 @@
 import React, {useState} from 'react';
 import { WebtoonAPIList } from '../services/webtoon';
 import "../App.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import Search from './Search';
 
 
 // 여기가 헤더화면이에요
 const Header = () => {
   const [keyword, setKeyword] = useState('');
-  const [searchToon, setSearchToon] = useState();
+  
+  const navigate = useNavigate();
+  const searchToon = () => {
+    navigate({
+      pathname: '/search',
+      search: `?keyword=${keyword}`
+    });
+  }
+
 
   const search = (e) => {
     setKeyword(e.target.value);
@@ -19,10 +26,12 @@ const Header = () => {
   const searchWebtoon = async(keyword) => {
     try {
       const search = await WebtoonAPIList.getSearchWebtoon(keyword);
-      console.log(search);
-      setSearchToon(search.data);
-      if (search.data.error === "Not Found"){
-        alert("해당하는 웹툰은 없어요.");
+      if(keyword.length > 0){
+        if (search.data.error === "Not Found"){
+          alert("해당하는 웹툰은 없어요.");
+        } else{
+          searchToon();
+        }
       }
     } catch (e) {
       console.log(e);
@@ -31,20 +40,16 @@ const Header = () => {
 
 
 
-
   return (
-    <div>
-      <div id='header'>
-        <Link to={'/'}><h1 id='logo' onClick={() => setSearchToon('')}>WEBTooN</h1></Link>
+    <div id='header'>
+      <Link to={'/'}><h1 id='logo'>WEBTooN</h1></Link>
+      <div>
         <div>
-          <div>
-            <input onChange={search}/>
-            <Link to={'/search'}><button onClick={() => searchWebtoon(keyword)}><img className='img' alt='search' src='img/search.png'/></button></Link>
-          </div>
-          <img className='img' alt='user' src='img/user.png'/>
+          <input onChange={search}/>
+          <button onClick={() => searchWebtoon(keyword)}><img className='img' alt='search' src='img/search.png'/></button>
         </div>
+        <img className='img' alt='user' src='img/user.png'/>
       </div>
-      <Search keyword={searchToon}/>
     </div>
   )
 }
