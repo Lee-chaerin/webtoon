@@ -18,12 +18,18 @@ const Header = () => {
   }
 
 
+  
   const search = (e) => {
     setKeyword(e.target.value);
     console.log(keyword);
   };
   
   const searchWebtoon = async(keyword) => {
+    if(!sessionStorage.getItem("userInfo")) {
+      alert('로그인 해주세요!!');
+      navigate('/login');
+      return
+    }
     try {
       const search = await WebtoonAPIList.getSearchWebtoon(keyword);
       if(keyword.length > 0){
@@ -41,17 +47,27 @@ const Header = () => {
 
 
   return (
-    <div id='header'>
-      <Link to={'/'}><h1 id='logo'>WEBTooN</h1></Link>
+    <div id="header">
+      <Link to={'/'}>
+        <h1 id="logo">WEBTooN</h1>
+      </Link>
       <div>
         <div>
-          <input onChange={search}/>
-          <button onClick={() => searchWebtoon(keyword)}><img className='img' alt='search' src='img/search.png'/></button>
+          <input onChange={search} />
+          <button onClick={() => searchWebtoon(keyword)}>
+            <img className="img" alt="search" src="img/search.png" />
+          </button>
         </div>
-        <img className='img' alt='user' src='img/user.png'/>
+        {sessionStorage.getItem('userInfo') ? (
+          <img alt="login-user" src="img/cookie.jpeg" />
+        ) : (
+          <Link to={'/login'}>
+            <img className="img" alt="user" src="img/user.png" />
+          </Link>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
 export default Header;
