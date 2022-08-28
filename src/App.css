@@ -10,10 +10,15 @@
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
 /* 헤더 */
 
 #header {
-  padding: 25px 200px 20px;
+  padding: 75px 300px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,13 +59,10 @@
 /* 메인 */
 
 #main {
-  padding: 20px 200px; 
+  padding: 20px 300px; 
 }
 
-#main a {
-  text-decoration: none;
-  color: #000000;
-}
+
 
 #dropForm {
   float: right;
@@ -98,32 +100,47 @@
 
 
 #week {
-  margin-top: 100px;
-  text-align: center;
+  margin-top: 80px;
   clear: both;
+}
+
+.day {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .day h3 {
+  width: 150px;
   font-size: 23px;
-  margin-bottom: 20px;
   cursor: pointer;
+}
+
+#webtoon{
+  display: flex;
+  justify-content: space-between;
 }
 
 .webtoon {
   width: 150px;
   margin-bottom: 13px;
+  cursor: pointer;
 }
 
 .webtoon img {
   width: 150px;
+  height: 150px;
 }
 
 .webtoon h6 {
   font-size: 13px;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.searchToon {
+  padding: 0 18px;
+  display: inline-block;
+}
