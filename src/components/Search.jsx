@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { WebtoonAPIList } from '../services/webtoon';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // 여기는 웹툰 디테일
 const Search = () => {
@@ -12,14 +13,17 @@ const Search = () => {
   const searchWebtoon = async(keyword) => {
     try {
       const search = await WebtoonAPIList.getSearchWebtoon(keyword);
+      console.log('몇번불렸니?');
       setKeywordArr(search.data);
     } catch (e) {
       console.log(e);
     }
   }
 
-  searchWebtoon(keyword);
-
+  useEffect(() => {
+    //여기다 함수 넣으면 search컴포넌트 불렸을때 딱 한번만 호출한다.
+    searchWebtoon(keyword); //이렇게 둔 이유는 검색되었을때 화면에서 바로보여지게할려고.
+  },[])
 
   const searchData = keywordArr;
   const searchToon = searchData && searchData.map(function(webtoon, index){
