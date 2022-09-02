@@ -76,7 +76,7 @@ const Main = () => {
     readDay(form, 5);
     readDay(form, 6);
     
-    setLoading(false);
+    
   }, [form]);
 
 
@@ -89,6 +89,7 @@ const Main = () => {
   const [webtoonSun, setWebtoonSun] = useState([]);
 
   const readDay = async(platform, day) => {
+    setLoading(true);
     const readDay = await WebtoonAPIList.getPlatformDay(platform, day);
 
     switch(day){
@@ -116,6 +117,7 @@ const Main = () => {
       default:
         console.log("요일 error")
     }
+    setLoading(false);
   };
 
   let webtoonsMon = webtoonMon;
