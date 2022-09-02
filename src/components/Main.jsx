@@ -130,8 +130,10 @@ const Main = () => {
   let readWebtoonMon = webtoonsMon.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -139,8 +141,10 @@ const Main = () => {
   let readWebtoonTue = webtoonsTue.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -148,8 +152,10 @@ const Main = () => {
   let readWebtoonWed = webtoonsWed.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -157,8 +163,10 @@ const Main = () => {
   let readWebtoonThu = webtoonsThu.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -166,8 +174,10 @@ const Main = () => {
   let readWebtoonFri = webtoonsFri.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   });
@@ -175,8 +185,10 @@ const Main = () => {
   let readWebtoonSat = webtoonsSat.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -184,8 +196,10 @@ const Main = () => {
   let readWebtoonSun = webtoonsSun.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
