@@ -59,10 +59,10 @@ const Header = () => {
           </button>
         </div>
         {sessionStorage.getItem('userInfo') ? (
-          <img alt="login-user" src="img/cookie.jpeg" />
+          <img className="img" alt="login-user" src="img/user(3).png" />
         ) : (
           <Link to={'/login'}>
-            <img className="img" alt="user" src="img/user.png" />
+            <img className="img" alt="user" src="img/user(2).png" />
           </Link>
         )}
       </div>
