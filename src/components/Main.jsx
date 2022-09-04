@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { WebtoonAPIList } from '../services/webtoon';
 import "../App.css";
+import Loading from './Loading';
+//import Loading from './Loading';
 
 // 여기가 메인화면이에요
 const Main = () => {
 
-  //플랫폼 이동
   let forms = ["네이버", "카카오", "카카오페이지"];
   let formList = forms.map(function(form, index){
     return <li key={index}><a href='#!' onClick={() => clickForm(form)}>{form}</a></li>
@@ -13,19 +14,23 @@ const Main = () => {
 
 
   const [platform, setPlatform] = useState('네이버');
+  const [form, setForm] = useState('naver');
 
   const clickForm = (e) => {
     switch(e){
       case "네이버":
         setPlatform("네이버");
+        setForm("naver");
         WebtoonForm("naver");
         break;
       case "카카오":
-        setPlatform("카카오")
+        setPlatform("카카오");
+        setForm("kakao");
         WebtoonForm("kakao");
         break;
       case "카카오페이지":
-        setPlatform("카카오페이지")
+        setPlatform("카카오페이지");
+        setForm("kakao-page");
         WebtoonForm("kakao-page");
         break;
       default:
@@ -44,21 +49,10 @@ const Main = () => {
 
 
 
-
-
-
   let days = ["월", "화", "수", "목", "금", "토", "일"];
 
 
   let week = days.map(function(day, index){
-    let form = "";
-    if(platform === "네이버"){
-      form = "naver";
-    } else if(platform === "카카오"){
-      form = "kakao";
-    } else if(platform === "카카오페이지"){
-      form = "kakao-page";
-    }
     return <h3 onClick={() => AllDay(form, index)} key={index}>{day}</h3>
   });  
 
@@ -74,35 +68,16 @@ const Main = () => {
 
 
   useEffect(() => {
-    readDay(0);
-    readDay(1);
-    readDay(2);
-    readDay(3);
-    readDay(4);
-    readDay(5);
-    readDay(6);
-  }, []);
-
-
-  /*
-  const [webtoon, setWebtoon] = useState([]);
-
-  const readDay = async(day) => {
-    const readDay = await WebtoonAPIList.getPlatformDay("naver", day);
-    console.log(readDay);
-    setWebtoon(readDay.data);
-  };
-
-  let webtoons = webtoon;
-  let readWebtoon = webtoons.map(function(webtoon, index){
-    return(
-      <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
-      </div>
-    )
-  });  
-  */
+    readDay(form, 0);
+    readDay(form, 1);
+    readDay(form, 2);
+    readDay(form, 3);
+    readDay(form, 4);
+    readDay(form, 5);
+    readDay(form, 6);
+    
+    
+  }, [form]);
 
 
   const [webtoonMon, setWebtoonMon] = useState([]);
@@ -113,8 +88,9 @@ const Main = () => {
   const [webtoonSat, setWebtoonSat] = useState([]);
   const [webtoonSun, setWebtoonSun] = useState([]);
 
-  const readDay = async(day) => {
-    const readDay = await WebtoonAPIList.getPlatformDay("naver", day);
+  const readDay = async(platform, day) => {
+    setLoading(true);
+    const readDay = await WebtoonAPIList.getPlatformDay(platform, day);
 
     switch(day){
       case 0:
@@ -141,6 +117,7 @@ const Main = () => {
       default:
         console.log("요일 error")
     }
+    setLoading(false);
   };
 
   let webtoonsMon = webtoonMon;
@@ -155,8 +132,10 @@ const Main = () => {
   let readWebtoonMon = webtoonsMon.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -164,8 +143,10 @@ const Main = () => {
   let readWebtoonTue = webtoonsTue.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -173,8 +154,10 @@ const Main = () => {
   let readWebtoonWed = webtoonsWed.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -182,8 +165,10 @@ const Main = () => {
   let readWebtoonThu = webtoonsThu.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -191,8 +176,10 @@ const Main = () => {
   let readWebtoonFri = webtoonsFri.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   });
@@ -200,8 +187,10 @@ const Main = () => {
   let readWebtoonSat = webtoonsSat.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
@@ -209,13 +198,36 @@ const Main = () => {
   let readWebtoonSun = webtoonsSun.map(function(webtoon, index){
     return(
       <div className='webtoon' title={webtoon.title} key={index}>
-        <img alt={webtoon.title} src={webtoon.img}/>
-        <h6>{webtoon.title}</h6>
+        <a href={webtoon.url}>
+          <img alt={webtoon.title} src={webtoon.img}/>
+          <h6>{webtoon.title}</h6>
+        </a>
       </div>
     )
   }); 
 
+    /*
+  const [webtoon, setWebtoon] = useState([]);
 
+  const readDay = async(day) => {
+    const readDay = await WebtoonAPIList.getPlatformDay("naver", day);
+    console.log(readDay);
+    setWebtoon(readDay.data);
+  };
+
+  let webtoons = webtoon;
+  let readWebtoon = webtoons.map(function(webtoon, index){
+    return(
+      <div className='webtoon' title={webtoon.title} key={index}>
+        <img alt={webtoon.title} src={webtoon.img}/>
+        <h6>{webtoon.title}</h6>
+      </div>
+    )
+  });  
+  */
+
+
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -223,49 +235,54 @@ const Main = () => {
 
 
   return (
-    <div id='main'>
-
-      <div id='dropForm'>
-        <ul>
-          <li><a href='#!'>{platform} ▼</a>
-            <ul>
-              {formList}
-            </ul>
-          </li>
-        </ul>
-      </div>
-      
-      <div id='week'>
-        <div className='day'>
-          {week}
+    <div>
+      {loading ? <Loading/> : 
+      <div id='main'>
+        <div id='dropForm'>
+          <ul>
+            <li><a href='#!'>{platform} ▼</a>
+              <ul>
+                {formList}
+              </ul>
+            </li>
+          </ul>
         </div>
+      
+      
+        <div id='week'>
+          <div className='day'>
+            {week}
+          </div>
 
-        <div id='webtoon'>
-          <div>
-            {readWebtoonMon}
-          </div>
-          <div>
-            {readWebtoonTue}
-          </div>
-          <div>
-            {readWebtoonWed}
-          </div>
-          <div>
-            {readWebtoonThu}
-          </div>
-          <div>
-            {readWebtoonFri}
-          </div>
-          <div>
-            {readWebtoonSat}
-          </div>
-          <div>
-            {readWebtoonSun}
+          <div id='webtoon'>
+            <div>
+              {readWebtoonMon}
+            </div>
+            <div>
+              {readWebtoonTue}
+            </div>
+            <div>
+              {readWebtoonWed}
+            </div>
+            <div>
+              {readWebtoonThu}
+            </div>
+            <div>
+              {readWebtoonFri}
+            </div>
+            <div>
+              {readWebtoonSat}
+            </div>
+            <div>
+              {readWebtoonSun}
+            </div>
           </div>
         </div>
       </div>
-      
+      }
     </div>
+
+    
   )
 }
 
